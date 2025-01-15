@@ -21,7 +21,9 @@ def  _initZoxide():
     z_cache_path = Path(cache_home).expanduser() / "zoxide" / _cache_name
     z_cache_path.parent.mkdir(exist_ok=True, parents=True)
   else:
-    z_cache_path	= Path(os.path.dirname(__file__)).parent / _cache_name
+    # z_cache_path = Path(os.path.dirname(__file__)).parent / _cache_name
+    z_cache_path = Path(os.path.join(os.path.expanduser("~"), ".config", "zoxide", _cache_name))
+    z_cache_path.parent.mkdir(exist_ok=True, parents=True)
   sys.path.append(str(z_cache_path.parent))
 
   zoxide_init_proc	= subprocess.run(["zoxide",'init','xonsh'],capture_output=True)
